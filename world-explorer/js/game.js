@@ -103,6 +103,19 @@ function handleAnswer(isCorrect) {
     gameState.qsAnswered++;
 }
 
+function endExpedition() {
+    gameState.gamesPlayed++;
+    
+    // 1. Save updated state to localStorage (storage.js)
+    saveGameState(gameState); 
+    
+    // 2. Force the home screen UI to re-render the new XP & stats
+    updateHomeScreenUI(); 
+
+    // 3. Switch back to home
+    switchScreen('screen-home');
+}
+
 export function handleAnswer(idx) {
   if (state.answered) return;
   state.answered = true; clearInterval(state.timer);
