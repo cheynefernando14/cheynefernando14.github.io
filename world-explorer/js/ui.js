@@ -11,13 +11,29 @@ const screens = {
 };
 
 export function showScreen(name) {
+  // 1. Unfocus active element to prevent the ARIA warning
+  if (document.activeElement && document.activeElement instanceof HTMLElement) {
+    document.activeElement.blur();
+  }
+
+  // 2. Hide inactive screens and reveal target screen
   Object.entries(screens).forEach(([key, el]) => {
+    if (!el) return;
     if (key === name) {
-      setTimeout(() => { el.classList.add('active'); el.classList.remove('exit'); }, 20);
+      setTimeout(() => { 
+        el.classList.add('active'); 
+        el.classList.remove('exit'); 
+        el.removeAttribute('aria-hidden');
+        el.removeAttribute('inert');
+      }, 20);
     } else {
-      el.classList.add('exit'); el.classList.remove('active');
+      el.classList.add('exit'); 
+      el.classList.remove('active');
+      el.setAttribute('aria-hidden', 'true');
+      el.setAttribute('inert', ''); // Prevents descendant focus completely
     }
   });
+
   $$('.nav-tab').forEach(t => t.classList.toggle('active', t.dataset.target === name));
 }
 
