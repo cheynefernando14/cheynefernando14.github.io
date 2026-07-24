@@ -1,7 +1,8 @@
 // js/game.js
+import { saveGameState } from './storage.js';
+import { showScreen, updateHomeScreenUI, popXPNotif, updateNavXP, triggerConfetti } from './ui.js';
 import { QUESTIONS, COUNTRY_DATA, ACHIEVEMENTS } from './data.js';
 import { loadStats, saveStats, calculateLevel } from './storage.js';
-import { showScreen, popXPNotif, updateNavXP, triggerConfetti } from './ui.js';
 import { sound } from './audio.js';
 
 const CONFIG = { Q_PER_GAME: 10, TIMER: 20, BASE_XP: 100, BONUS_XP: 50 };
