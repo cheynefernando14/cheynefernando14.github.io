@@ -19,6 +19,10 @@ export function saveStats(stats) {
   try { localStorage.setItem(CONFIG.LS_KEY, JSON.stringify(stats)); } catch {}
 }
 
+export function saveGameState(state) {
+    // your saving logic here...
+}
+
 export function calculateLevel(xp) {
   let levelIdx = 0;
   for (let i = 0; i < LEVELS.length; i++) {
