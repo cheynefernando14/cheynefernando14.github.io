@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Scientific Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Main wrapper for the application layout -->
+    <main class="app-container">
+        
+        <!-- Calculator Section -->
+        <section class="calculator glass">
+            <!-- Top bar containing Theme Toggle and Memory Indicator -->
+            <div class="top-bar">
+                <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">🌙</button>
+                <div class="modes">
+                    <button id="deg-rad-toggle" class="text-btn">DEG</button>
+                    <span id="memory-indicator" class="hidden">M</span>
+                </div>
+            </div>
+
+            <!-- Display Screen -->
+            <div class="display">
+                <div class="previous-calc">
+                    <span id="history-expr"></span>
+                </div>
+                <div class="current-calc">
+                    <span id="current-expr">0</span>
+                </div>
+                <button id="copy-btn" class="icon-btn copy-btn" aria-label="Copy Result">📋</button>
+            </div>
+
+            <!-- Keypad Grid -->
+            <div class="keypad">
+                <!-- Row 1: Memory & Utilities -->
+                <button class="btn memory" data-action="mc">MC</button>
+                <button class="btn memory" data-action="mr">MR</button>
+                <button class="btn memory" data-action="m-plus">M+</button>
+                <button class="btn memory" data-action="m-minus">M-</button>
+                <button class="btn utility clear" data-action="clear">AC</button>
+                
+                <!-- Row 2: Scientific -->
+                <button class="btn sci" data-type="func" data-eval="calcSin(" data-display="sin(">sin</button>
+                <button class="btn sci" data-type="func" data-eval="calcCos(" data-display="cos(">cos</button>
+                <button class="btn sci" data-type="func" data-eval="calcTan(" data-display="tan(">tan</button>
+                <button class="btn sci" data-type="func" data-eval="Math.log10(" data-display="log(">log</button>
+                <button class="btn sci" data-type="func" data-eval="Math.log(" data-display="ln(">ln</button>
+                
+                <!-- Row 3: Scientific -->
+                <button class="btn sci" data-type="value" data-eval="Math.PI" data-display="π">π</button>
+                <button class="btn sci" data-type="value" data-eval="Math.E" data-display="e">e</button>
+                <button class="btn sci" data-type="operator" data-eval="**" data-display="^">xʸ</button>
+                <button class="btn sci" data-type="func" data-eval="Math.sqrt(" data-display="√(">√</button>
+                <button class="btn utility" data-action="delete" aria-label="Backspace">⌫</button>
+
+                <!-- Row 4: Math Symbols -->
+                <button class="btn sci" data-type="operator" data-eval="**2" data-display="²">x²</button>
+                <button class="btn sci" data-type="operator" data-eval="**3" data-display="³">x³</button>
+                <button class="btn sci" data-type="func" data-eval="calcFact(" data-display="fact(">n!</button>
+                <button class="btn sci" data-type="operator" data-eval="/100" data-display="%">%</button>
+                <button class="btn operator" data-type="operator" data-eval="/" data-display="÷">÷</button>
+
+                <!-- Row 5: Numbers -->
+                <button class="btn sci" data-type="func" data-eval="(" data-display="(">(</button>
+                <button class="btn num" data-type="value" data-eval="7" data-display="7">7</button>
+                <button class="btn num" data-type="value" data-eval="8" data-display="8">8</button>
+                <button class="btn num" data-type="value" data-eval="9" data-display="9">9</button>
+                <button class="btn operator" data-type="operator" data-eval="*" data-display="×">×</button>
+
+                <!-- Row 6: Numbers -->
+                <button class="btn sci" data-type="func" data-eval=")" data-display=")">)</button>
+                <button class="btn num" data-type="value" data-eval="4" data-display="4">4</button>
+                <button class="btn num" data-type="value" data-eval="5" data-display="5">5</button>
+                <button class="btn num" data-type="value" data-eval="6" data-display="6">6</button>
+                <button class="btn operator" data-type="operator" data-eval="-" data-display="-">−</button>
+
+                <!-- Row 7: Numbers -->
+                <button class="btn num span-2" data-type="value" data-eval="0" data-display="0">0</button>
+                <button class="btn num" data-type="value" data-eval="1" data-display="1">1</button>
+                <button class="btn num" data-type="value" data-eval="2" data-display="2">2</button>
+                <button class="btn num" data-type="value" data-eval="3" data-display="3">3</button>
+                <button class="btn operator" data-type="operator" data-eval="+" data-display="+">+</button>
+
+                <!-- Row 8: Decimals and Equals -->
+                <button class="btn num span-4 empty"></button>
+                <button class="btn num" data-type="value" data-eval="." data-display=".">.</button>
+                <button class="btn equals" data-action="calculate">=</button>
+            </div>
+        </section>
+
+        <!-- History Sidebar -->
+        <aside class="history-panel glass">
+            <div class="history-header">
+                <h3>History</h3>
+                <button id="clear-history" class="text-btn">Clear</button>
+            </div>
+            <ul id="history-list" class="history-list">
+                <!-- History items injected via JS -->
+            </ul>
+        </aside>
+
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
