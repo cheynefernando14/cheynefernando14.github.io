@@ -1,6 +1,6 @@
 // js/game.js
 import { saveGameState } from './storage.js';
-import { showScreen, updateHomeScreenUI, popXPNotif, updateNavXP, triggerConfetti } from './ui.js';
+import { showScreen, switchScreen, updateHomeScreenUI, popXPNotif, updateNavXP, triggerConfetti } from './ui.js';
 import { QUESTIONS, COUNTRY_DATA, ACHIEVEMENTS } from './data.js';
 import { loadStats, saveStats, calculateLevel } from './storage.js';
 import { sound } from './audio.js';
