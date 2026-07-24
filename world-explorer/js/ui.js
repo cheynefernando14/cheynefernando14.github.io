@@ -21,6 +21,23 @@ export function showScreen(name) {
   $$('.nav-tab').forEach(t => t.classList.toggle('active', t.dataset.target === name));
 }
 
+export function switchScreen(targetScreenId) {
+    // 1. Remove focus from active elements to clear the ARIA warning
+    if (document.activeElement) {
+        document.activeElement.blur();
+    }
+
+    // 2. Hide all screens and show target screen
+    document.querySelectorAll('.screen').forEach(screen => {
+        screen.classList.remove('active');
+        screen.setAttribute('aria-hidden', 'true');
+    });
+
+    const activeScreen = document.getElementById(targetScreenId);
+    activeScreen.classList.add('active');
+    activeScreen.removeAttribute('aria-hidden');
+}
+
 export function updateNavXP() {
   const stats = loadStats();
   $('#nav-level').textContent = `Lvl ${stats.level}`;
