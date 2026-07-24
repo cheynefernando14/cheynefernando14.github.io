@@ -96,14 +96,6 @@ function onTimeUp() {
   $('#next-btn').disabled = false; $('#skip-btn').disabled = true;
 }
 
-function recordAnswerScore(isCorrect) {
-    if (isCorrect) {
-        gameState.totalCorrect++;
-        gameState.xp += 100; // Add XP for correct answers
-    }
-    gameState.qsAnswered++;
-}
-
 function endExpedition() {
     gameState.gamesPlayed++;
     
