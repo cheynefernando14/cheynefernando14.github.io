@@ -59,7 +59,7 @@ export function updateNavXP() {
   }
 }
 
-export function refreshHomeStats() {
+export function updateHomeScreenUI() {
   const s = loadStats();
   $('#stat-high-score').textContent = s.highScore !== null ? s.highScore : '—';
   $('#stat-games-played').textContent = s.gamesPlayed;
@@ -67,6 +67,9 @@ export function refreshHomeStats() {
   $('#daily-streak-badge').textContent = `${s.dailyStreak}🔥`;
   updateNavXP();
 }
+
+// Keep an alias in case other files call refreshHomeStats
+export const refreshHomeStats = updateHomeScreenUI;
 
 export function popXPNotif(amount) {
   const notif = $('#xp-notif');
