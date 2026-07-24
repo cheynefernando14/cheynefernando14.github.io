@@ -1,0 +1,333 @@
+/* Core Variables & Theming */
+:root {
+    --accent: #00ffcc;
+    --font-primary: 'Roboto', sans-serif;
+    --font-display: 'Orbitron', sans-serif;
+    --transition-speed: 0.4s;
+}
+
+[data-theme="dark"] {
+    --bg-gradient: linear-gradient(135deg, #0a0a0a, #1a2a3a, #0f2027);
+    --glass-bg: rgba(20, 25, 30, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-main: #ffffff;
+    --text-muted: #a0aab5;
+    --shadow: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] {
+    --bg-gradient: linear-gradient(135deg, #e0eafc, #cfdef3, #f5f7fa);
+    --glass-bg: rgba(255, 255, 255, 0.5);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --text-main: #1a1a1a;
+    --text-muted: #555555;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-primary);
+    background: var(--bg-gradient);
+    background-size: 300% 300%;
+    color: var(--text-main);
+    min-height: 100vh;
+    padding: 20px;
+    animation: gradientShift 15s ease infinite;
+    overflow-x: hidden;
+    position: relative;
+    transition: background var(--transition-speed), color var(--transition-speed);
+}
+
+/* Background Animations */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+#particles-container {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(100vh) scale(0); opacity: 0; }
+    50% { opacity: 0.5; }
+    100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+
+/* Glassmorphism Classes */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 var(--shadow);
+}
+
+/* Settings Bar */
+.settings-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 15px 25px;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.setting-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+button, input[type="text"], input[type="color"] {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    color: var(--text-main);
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: var(--accent);
+    color: #000;
+    box-shadow: 0 0 10px var(--accent);
+}
+
+/* Dashboard Layout Grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.widget {
+    padding: 25px;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.widget:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px 0 rgba(0,0,0,0.4), 0 0 15px var(--glass-border);
+}
+
+.widget-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 10px;
+    color: var(--accent);
+}
+
+/* Typography & Neons */
+.neon-text {
+    color: var(--accent);
+    text-shadow: 0 0 5px var(--accent), 0 0 10px rgba(0,255,204,0.5);
+    font-family: var(--font-display);
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background: var(--glass-border);
+    margin: 20px 0;
+}
+
+/* Clock & Date */
+.time-card {
+    text-align: center;
+}
+
+.clock {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    color: var(--text-main);
+    text-shadow: 0 0 15px var(--shadow);
+}
+
+.blink {
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% { opacity: 0; }
+}
+
+.seconds {
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-left: 5px;
+}
+
+.ampm {
+    font-size: 1.5rem;
+    margin-left: 5px;
+}
+
+.date {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+.meta-time {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Header Status */
+.header-card {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-indicators span {
+    margin-left: 15px;
+    font-size: 0.9rem;
+    background: rgba(0,0,0,0.2);
+    padding: 5px 10px;
+    border-radius: 12px;
+}
+
+/* Weather */
+.weather-main {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.weather-icon {
+    font-size: 4rem;
+}
+
+.weather-temp {
+    font-size: 3rem;
+    font-family: var(--font-display);
+}
+
+.weather-desc {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+}
+
+.weather-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+/* Calendar */
+.calendar-table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.calendar-table th {
+    color: var(--accent);
+    padding-bottom: 10px;
+}
+
+.calendar-table td {
+    padding: 8px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    transition: background 0.2s;
+}
+
+.calendar-table td:hover:not(:empty) {
+    background: rgba(255,255,255,0.2);
+    cursor: pointer;
+}
+
+.calendar-table td.today {
+    background: var(--accent);
+    color: #000;
+    font-weight: bold;
+    box-shadow: 0 0 10px var(--accent);
+}
+
+/* Inspiration & Almanac */
+.quote-box {
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    border-left: 4px solid var(--accent);
+    padding-left: 15px;
+    margin-bottom: 10px;
+}
+
+.fortune-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.favorable { color: #4caf50; }
+.unfavorable { color: #f44336; }
+
+/* Moon & Countdown */
+.moon-display {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.5rem;
+}
+
+.countdown-timer {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Animations */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header-card { flex-direction: column; text-align: center; gap: 15px; }
+    .clock { font-size: 3rem; }
+    .settings-bar { justify-content: center; }
+}
