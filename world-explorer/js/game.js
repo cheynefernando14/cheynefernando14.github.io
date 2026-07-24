@@ -98,23 +98,18 @@ function onTimeUp() {
 
 function recordAnswerScore(isCorrect) {
     if (isCorrect) {
-        gameState.totalCorrect++;
-        gameState.xp += 100; // Add XP for correct answers
+        state.correct++;
+        state.xp += 100;
     }
-    gameState.qsAnswered++;
+    state.idx++;
 }
 
 function endExpedition() {
-    gameState.gamesPlayed++;
-    
-    // 1. Save updated state to localStorage (storage.js)
-    saveGameState(gameState); 
-    
-    // 2. Force the home screen UI to re-render the new XP & stats
+    let s = loadStats();
+    s.gamesPlayed++;
+    saveStats(s); 
     updateHomeScreenUI(); 
-
-    // 3. Switch back to home
-    switchScreen('screen-home');
+    showScreen('home');
 }
 
 export function handleAnswer(idx) {
