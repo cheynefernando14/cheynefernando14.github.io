@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic Smart Home Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="script.js"></script>
+    <!-- Using a futuristic font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body data-theme="dark">
+    <!-- Animated Particles Background -->
+    <div id="particles-container" aria-hidden="true"></div>
+
+    <!-- Top Settings Bar -->
+    <header class="settings-bar widget glass">
+        <div class="setting-group">
+            <label for="theme-toggle">Theme:</label>
+            <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">🌙 / ☀️</button>
+        </div>
+        <div class="setting-group">
+            <label for="accent-picker">Accent:</label>
+            <input type="color" id="accent-picker" value="#00ffcc" aria-label="Choose Accent Color">
+        </div>
+        <div class="setting-group">
+            <label for="time-format">24-Hour:</label>
+            <input type="checkbox" id="time-format" aria-label="Toggle 24 Hour Time">
+        </div>
+        <div class="setting-group">
+            <label for="temp-format">Celsius:</label>
+            <input type="checkbox" id="temp-format" checked aria-label="Toggle Celsius/Fahrenheit">
+        </div>
+        <div class="setting-group search-group">
+            <input type="text" id="weather-location" placeholder="Search City..." aria-label="Search Weather Location">
+            <button id="weather-search-btn" aria-label="Search">🔍</button>
+        </div>
+    </header>
+
+    <main class="dashboard-grid">
+        <!-- Header / Greeting / Status Card -->
+        <section class="widget glass header-card fade-in">
+            <h1 id="greeting" class="neon-text">Good Morning</h1>
+            <div class="status-indicators">
+                <span id="network-status" title="Internet Connection">📶 Online</span>
+                <span id="battery-status" title="Battery Status">🔋 --%</span>
+            </div>
+        </section>
+
+        <!-- Time & Date Card -->
+        <section class="widget glass time-card fade-in">
+            <div class="clock">
+                <span id="hours">12</span><span id="colon" class="blink">:</span><span id="minutes">00</span><span id="seconds" class="seconds">00</span>
+                <span id="ampm" class="ampm">AM</span>
+            </div>
+            <div class="date" id="full-date">Monday, January 1, 2026</div>
+            <div class="meta-time">
+                <span id="timezone-info">TZ: GMT</span> | 
+                Day: <span id="day-of-year">1</span> | 
+                Week: <span id="week-of-year">1</span>
+            </div>
+        </section>
+
+        <!-- Weather Card -->
+        <section class="widget glass weather-card fade-in">
+            <h2 class="widget-title">Weather <span id="current-city">Dubai</span></h2>
+            <div class="weather-main">
+                <div class="weather-icon" id="weather-icon">--</div>
+                <div class="weather-temp"><span id="temp-value">--</span><span id="temp-unit">°C</span></div>
+            </div>
+            <div class="weather-desc" id="weather-desc">Loading...</div>
+            <div class="weather-details">
+                <div>Feels Like: <span id="feels-like">--</span></div>
+                <div>Humidity: <span id="humidity">--</span>%</div>
+                <div>Wind: <span id="wind-speed">--</span> km/h</div>
+                <div>🌅 <span id="sunrise">--:--</span> | 🌇 <span id="sunset">--:--</span></div>
+            </div>
+        </section>
+
+        <!-- Live Calendar Card -->
+        <section class="widget glass calendar-card fade-in">
+            <div class="calendar-header">
+                <h2 id="calendar-month-year" class="widget-title">Month Year</h2>
+            </div>
+            <table class="calendar-table">
+                <thead>
+                    <tr>
+                        <th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th>
+                    </tr>
+                </thead>
+                <tbody id="calendar-body">
+                    <!-- JS Injected Calendar Days -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Daily Inspiration Card (Verses & Quotes) -->
+        <section class="widget glass inspiration-card fade-in">
+            <h2 class="widget-title">Daily Inspiration</h2>
+            <blockquote class="quote-box">
+                <p id="random-quote">"Loading quote..."</p>
+            </blockquote>
+            <hr class="divider">
+            <div class="bible-verse">
+                <p class="neon-text">Verse of the Day:</p>
+                <p id="daily-verse">Loading verse...</p>
+            </div>
+        </section>
+
+        <!-- Chinese Daily Fortune Card -->
+        <section class="widget glass fortune-card fade-in">
+            <h2 class="widget-title">Daily Almanac</h2>
+            <div class="fortune-grid">
+                <div><strong>Lucky Color:</strong> <span id="fortune-color">--</span></div>
+                <div><strong>Lucky Number:</strong> <span id="fortune-number">--</span></div>
+                <div><strong>Direction:</strong> <span id="fortune-direction">--</span></div>
+                <div><strong>Zodiac Match:</strong> <span id="fortune-zodiac">--</span></div>
+            </div>
+            <div class="fortune-activities">
+                <p class="favorable">✓ <strong>Suitable:</strong> <span id="fortune-suitable">--</span></p>
+                <p class="unfavorable">✗ <strong>Avoid:</strong> <span id="fortune-avoid">--</span></p>
+            </div>
+        </section>
+
+        <!-- Miscellaneous (Moon & Countdown) -->
+        <section class="widget glass misc-card fade-in">
+            <div class="moon-phase">
+                <h2 class="widget-title">Moon Phase</h2>
+                <div class="moon-display">
+                    <span id="moon-icon">🌕</span>
+                    <span id="moon-name">Full Moon</span>
+                </div>
+            </div>
+            <hr class="divider">
+            <div class="countdown">
+                <h2 class="widget-title">New Year Countdown</h2>
+                <div id="ny-countdown" class="neon-text countdown-timer">
+                    -- Days -- Hrs -- Min -- Sec
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
